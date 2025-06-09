@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Formulário de Cálculo de Rescisão</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      color: #fff;
+      padding: 20px;
+    }
+
+    .form-container {
+      background: rgba(255 255 255 / 0.1);
+      backdrop-filter: blur(12px);
+      padding: 40px 50px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 900;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      display: block;
+      color: #e0d7ffdd;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+      padding: 14px 18px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 12px;
+      outline: none;
+      background: rgba(255 255 255 / 0.25);
+      color: #fff;
+      box-shadow: inset 0 0 8px rgba(0,0,0,0.15);
+      transition: background 0.3s ease;
+    }
+
+    input[type="text"]::placeholder,
+    input[type="number"]::placeholder {
+      color: #dcd6f7cc;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    select:focus {
+      background: rgba(255 255 255 / 0.4);
+      box-shadow: 0 0 12px rgba(255,255,255,0.6);
+      color: #111;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 16px 0;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #764ba2;
+      background: #fff;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(255,255,255,0.4);
+      transition: all 0.4s ease;
+      letter-spacing: 0.1em;
+    }
+
+    button:hover {
+      background: #5e3c92;
+      color: #fff;
+      box-shadow: 0 10px 25px rgba(94,60,146,0.7);
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 500px) {
+      .form-container {
+        padding: 30px 25px;
+      }
+
+      button {
+        font-size: 1rem;
+        padding: 14px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Calcule sua Rescisão</h2>
+    <form action="/resultado" method="post">
+      <label for="nome">Nome Completo</label>
+      <input type="text" id="nome" name="nome" placeholder="Seu nome completo" required />
+
+      <label for="salario">Salário Mensal (R$)</label>
+      <input type="number" id="salario" name="salario" placeholder="Ex: 2500" step="0.01" min="0" required />
+
+      <label for="meses">Meses Trabalhados</label>
+      <input type="number" id="meses" name="meses" placeholder="Ex: 12" min="0" required />
+
+      <label for="motivo">Motivo da Saída</label>
+      <select id="motivo" name="motivo" required>
+        <option value="" disabled selected>Selecione um motivo</option>
+        <option value="pedido">Pedido de demissão</option>
+        <option value="demissao">Demissão sem justa causa</option>
+        <option value="justa_causa">Demissão por justa causa</option>
+        <option value="fim_contrato">Fim de contrato</option>
+      </select>
+
+      <button type="submit">Calcular</button>
+    </form>
+  </div>
+</body>
+</html>

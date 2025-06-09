@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resultado do Cálculo de Rescisão</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      color: #fff;
+      padding: 20px;
+    }
+
+    .result-container {
+      background: rgba(255 255 255 / 0.1);
+      backdrop-filter: blur(12px);
+      padding: 40px 50px;
+      border-radius: 20px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      font-weight: 900;
+      font-size: 2rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .info {
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #e0d7ffdd;
+    }
+
+    .values {
+      text-align: left;
+      color: #fff;
+    }
+
+    .values p {
+      margin: 10px 0;
+      font-size: 1.1rem;
+      background: rgba(255 255 255 / 0.15);
+      padding: 12px 18px;
+      border-radius: 12px;
+      box-shadow: inset 0 0 8px rgba(0,0,0,0.15);
+    }
+
+    .total {
+      margin-top: 30px;
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #ffd700;
+      text-shadow: 0 0 8px #ffd700aa;
+    }
+
+    a.button {
+      display: inline-block;
+      margin-top: 35px;
+      padding: 14px 36px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #764ba2;
+      background: #fff;
+      border-radius: 50px;
+      text-decoration: none;
+      box-shadow: 0 5px 15px rgba(255,255,255,0.4);
+      transition: all 0.4s ease;
+      letter-spacing: 0.1em;
+    }
+
+    a.button:hover {
+      background: #5e3c92;
+      color: #fff;
+      box-shadow: 0 10px 25px rgba(94,60,146,0.7);
+      transform: scale(1.05);
+    }
+
+    @media (max-width: 500px) {
+      .result-container {
+        padding: 30px 25px;
+      }
+
+      a.button {
+        font-size: 1rem;
+        padding: 12px 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="result-container">
+    <h2>Resultado da Rescisão</h2>
+
+    <div class="info">
+      <p><strong>Nome:</strong> {{ nome }}</p>
+      <p><strong>Salário Mensal:</strong> R$ {{ '{:.2f}'.format(salario) }}</p>
+      <p><strong>Meses Trabalhados:</strong> {{ meses }}</p>
+      <p><strong>Motivo da Saída:</strong> 
+        {% if motivo == "pedido" %}Pedido de demissão
+        {% elif motivo == "demissao" %}Demissão sem justa causa
+        {% elif motivo == "justa_causa" %}Demissão por justa causa
+        {% elif motivo == "fim_contrato" %}Fim de contrato
+        {% else %}Não informado
+        {% endif %}
+      </p>
+    </div>
+
+    <div class="values">
+      <p>Férias Proporcionais: R$ {{ '{:.2f}'.format(ferias) }}</p>
+      <p>13º Salário Proporcional: R$ {{ '{:.2f}'.format(decimo_terceiro) }}</p>
+      <p>Aviso Prévio: R$ {{ '{:.2f}'.format(aviso_previo) }}</p>
+      <p>Multa do FGTS (40%): R$ {{ '{:.2f}'.format(multa_fgts) }}</p>
+      <p>Saldo de Salário: R$ {{ '{:.2f}'.format(saldo_salario) }}</p>
+    </div>
+
+    <p class="total">Total a Receber: R$ {{ '{:.2f}'.format(total) }}</p>
+
+    <a href="/formulario" class="button">Calcular Novamente</a>
+  </div>
+</body>
+</html>
